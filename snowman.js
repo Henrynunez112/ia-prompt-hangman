@@ -11,11 +11,11 @@ class Game {
     this.guesses = []
     this.board = new Board(this.magicWord.length)
   }
-
+  
   getMove() {
     return readline.question("Guess any letter:")
   }
-
+  
   isCorrectGuess(letter) {
     if (this.magicWord.includes(letter)) {
       return true
@@ -23,9 +23,12 @@ class Game {
       return false
     }
   }
-
+  
   isValidGuess(letter){
-    if (alphabet.includes(letter) && this.guesses.includes(letter)){
+    //why do you want to check if the letter appears in the alphabet AND in the array this.guesses where you enter
+    // letters you have ALREADY guessed.
+    
+    if (alphabet.includes(letter) && !this.guesses.includes(letter)){
       return true
     } else {
       return false
