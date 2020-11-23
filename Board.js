@@ -8,18 +8,18 @@ class Board {
     let complete = false;
     for (let i = 0; i < this.board.length; i++) {
       //hint hint
-      // if(this.board[i] != "_") {
-      //   complete = true;
-      // }
-      if(!this.board.includes("_")){
-        complete = true
+      if(this.board[i] != "_") {
+        complete = true;
       }
+      // if(!this.board.includes("_")){
+      //   complete = true
+      // }
     }
     return complete
   }
   displayBoard(){
     //you should also display the words
-    //that user have guessed
+    //that users have guessed
     console.log(this.board)
   }
 }

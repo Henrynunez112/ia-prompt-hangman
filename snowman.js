@@ -7,13 +7,14 @@ class Game {
   constructor(){
     this.name = readline.question("Hello! Please enter your name: ")
     this.magicWord = dictionary[Math.floor(Math.random() * dictionary.length)]
-    // console.log(this.magicWord)
     this.wrongGuessesRemaining = 6
     this.guesses = []
     this.board = new Board(this.magicWord.length)
   }
   
   getMove() {
+    //as a user needs to see the number of guesses
+    //remaining should be visible
     return readline.question("Guess any letter:")
   }
   
@@ -29,8 +30,8 @@ class Game {
     //why do you want to check if the letter appears in the alphabet AND in the array this.guesses where you enter
     // letters you have ALREADY guessed.
 
-    if (alphabet.includes(letter) && !this.guesses.includes(letter)){
     // if (alphabet.includes(letter) && !this.guesses.includes(letter)){
+    if (alphabet.includes(letter) && this.guesses.includes(letter)){
       return true
     } else {
       return false
@@ -43,6 +44,17 @@ class Game {
       return false 
     }
   }
+  // isGameOver(){
+  //   if(this.wrongGuessesRemaining <= 0){
+  //     console.log("Sorry, you lost. The word was " + game.magicWord);
+  //     return true
+  //   }else if(this.board.isBoardComplete() ){
+  //     console.log(`Congratulations, ${game.name}! You win!`);
+  //     return true
+  //   }
+  //   return false
+  // }
+
   placeLetter (letter){
     for (let i = 0; i < this.board.board.length;i++){
       if (this.magicWord[i] === letter){
@@ -77,8 +89,14 @@ class Game {
 }
 
 let game = new Game()
-if (game.isGameOver() && game.wrongGuessesRemaining > 0){
+
+//you have the code blocks for the ending of the game but they are not appearing
+// in the console may putting these two in a fuction could possible help you get to the end
+
+
+if (game.isGameOver() && game.wrongGuessesRemaining >= 0){
       console.log(`Congratulations, ${game.name}! You win!`)
+      //the game should display how many guesses it took and display a victory message
 
 } 
 else if (game.isGameOver() && game.wrongGuessesRemaining <= 0){
