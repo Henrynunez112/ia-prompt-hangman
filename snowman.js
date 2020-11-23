@@ -7,6 +7,7 @@ class Game {
   constructor(){
     this.name = readline.question("Hello! Please enter your name: ")
     this.magicWord = dictionary[Math.floor(Math.random() * dictionary.length)]
+    // console.log(this.magicWord)
     this.wrongGuessesRemaining = 6
     this.guesses = []
     this.board = new Board(this.magicWord.length)
@@ -27,8 +28,9 @@ class Game {
   isValidGuess(letter){
     //why do you want to check if the letter appears in the alphabet AND in the array this.guesses where you enter
     // letters you have ALREADY guessed.
-    
+
     if (alphabet.includes(letter) && !this.guesses.includes(letter)){
+    // if (alphabet.includes(letter) && !this.guesses.includes(letter)){
       return true
     } else {
       return false
@@ -54,6 +56,9 @@ class Game {
       let letter = this.getMove()
       while (!this.isValidGuess(letter)) {
         console.log("Sorry, that is not a valid guess.");
+    //Handle invalid guesses by displaying a 
+    //message and having the user enter a different guess.
+    //Invalid guesses don't count against the guess count
         this.wrongGuessesRemaining--
         letter = this.getMove()
       }
@@ -64,7 +69,6 @@ class Game {
         console.log("Incorrect!")
         this.wrongGuessesRemaining--;
       }
-      // console.log(this.magicWord)
       this.board.displayBoard()
       console.log("You have " + this.wrongGuessesRemaining + " guesses left")
     }
